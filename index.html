@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>mac.View – личный архив</title>
+  <link rel="stylesheet" href="css/style.css?v=1" />
+</head>
+<body>
+
+  <!-- Заставка с крупным логотипом. Показывается только при загрузке -->
+  <div id="splash">
+    <img id="logo-fly" src="assets/logo.png" alt="Логотип mac.View" />
+  </div>
+
+  <!-- Шапка сайта -->
+  <header>
+    <!-- Место, куда «прилетает» логотип после анимации -->
+    <div id="logo-target" class="header-logo">
+      <img src="assets/logo.png" alt="Логотип mac.View" />
+    </div>
+    <div class="brand">
+      <span class="top">mac.</span>
+      <span class="bottom">View</span>
+    </div>
+  </header>
+
+  <!-- Основной контейнер -->
+  <div class="app">
+    <!-- Блок приветствия -->
+    <section class="hero">
+      <small>Добро пожаловать</small>
+      <h1>Привет, <span id="username">гость</span>!<br />
+        <span>это мой личный архив</span>
+      </h1>
+      <div class="meta">
+        <div>Все статьи в одном месте</div>
+        <div>Легко добавляйте новые материалы</div>
+      </div>
+    </section>
+
+    <!-- Разделы сайта -->
+    <a href="articles.html" class="card" data-card="articles">
+      <h2>Статьи</h2>
+      <p>Все мои тексты и мысли</p>
+    </a>
+
+    <a href="projects.html" class="card" data-card="projects">
+      <h2>Проекты</h2>
+      <p>То, что я создаю сейчас</p>
+    </a>
+
+    <a href="observations.html" class="card" data-card="observations">
+      <h2>Наблюдения</h2>
+      <p>Идеи, заметки, выводы</p>
+    </a>
+
+    <a href="about.html" class="card" data-card="about">
+      <h2>Обо мне</h2>
+      <p>Кто я и чем занимаюсь</p>
+    </a>
+
+    <a href="info.html" class="card" data-card="info">
+      <h2>Инфо</h2>
+      <p>Контакты и детали</p>
+    </a>
+  </div>
+
+  <!-- Нижняя навигация -->
+  <nav class="nav">
+    <button data-target="index.html">Главная</button>
+    <button data-target="articles.html">Статьи</button>
+    <button data-target="projects.html">Проекты</button>
+    <button data-target="observations.html">Наблюдения</button>
+    <button data-target="about.html">Обо мне</button>
+    <button data-target="info.html">Инфо</button>
+  </nav>
+
+  <!-- Инкрементируйте query‑параметр (?v=2) чтобы очистить кэш при обновлении js -->
+  <script src="./js/app.js?v=4" defer></script>
+</body>
+</html>

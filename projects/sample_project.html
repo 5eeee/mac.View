@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Пример проекта – mac.View</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <div id="splash" style="display:none;"></div>
+  <header class="glass">
+    <div id="logo-target" class="header-logo">
+      <img src="../assets/logo.png" alt="Логотип mac.View" />
+    </div>
+    <div class="brand">
+      <span class="top">mac.</span>
+      <span class="bottom">View</span>
+    </div>
+  </header>
+  <div class="content">
+    <div class="window-controls">
+      <span class="red"></span><span class="yellow"></span><span class="green"></span>
+    </div>
+    <button class="back-button" onclick="history.back()" type="button">← Назад</button>
+    <h1>Пример проекта</h1>
+    <p><em>Описание проекта:</em> этот пример демонстрирует, как вы можете
+      структурировать информацию о своих проектах. Опишите цель проекта,
+      используемые технологии и текущий статус.</p>
+    <h2>Состав команды</h2>
+    <table>
+      <tr>
+        <th>Имя</th>
+        <th>Роль</th>
+        <th>Контакты</th>
+      </tr>
+      <tr>
+        <td>Анна Смирнова</td>
+        <td>Менеджер проекта</td>
+        <td>anna@example.com</td>
+      </tr>
+      <tr>
+        <td>Игорь Сидоров</td>
+        <td>Разработчик</td>
+        <td>igor@example.com</td>
+      </tr>
+      <tr>
+        <td>Вы</td>
+        <td>Дизайнер</td>
+        <td>you@example.com</td>
+      </tr>
+    </table>
+    <h2>Моя роль</h2>
+    <p>
+      В этом проекте я занимался дизайном пользовательского интерфейса,
+      создавая прототипы в Figma, согласовывая макеты с командой и
+      контролируя соблюдение дизайн‑гайдов. Также координировал работу
+      разработчиков, помогал решать вопросы адаптивности и использовал навыки
+      проектного управления.
+    </p>
+  </div>
+  <nav class="nav glass">
+    <button data-target="../index.html">Главная</button>
+    <button data-target="../articles.html">Статьи</button>
+    <button data-target="../projects.html">Проекты</button>
+    <button data-target="../observations.html">Наблюдения</button>
+    <button data-target="../about.html">Обо мне</button>
+    <button data-target="../info.html">Инфо</button>
+  </nav>
+  <script src="../js/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!--
+  Шаблон для новой статьи mac.View
+
+  Скопируйте этот файл в папку posts/, переименуйте его (например,
+  my_first_post.html) и заполните контент. Каждая статья — это
+  отдельная страница, которая наследует общие стили сайта.
+-->
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Название статьи – mac.View</title>
+  <!-- Подключаем стили. Обратите внимание на относительный путь: из папки posts
+       нужно подняться на уровень выше, чтобы добраться до css. -->
+  <link rel="stylesheet" href="../css/style.css?v=1" />
+</head>
+<body>
+  <div id="splash" style="display:none;"></div>
+  <header>
+    <div id="logo-target" class="header-logo">
+      <img src="../assets/logo.png" alt="Логотип mac.View" />
+    </div>
+    <div class="brand">
+      <span class="top">mac.</span>
+      <span class="bottom">View</span>
+    </div>
+  </header>
+  <div class="content">
+    <!-- Элементы управления окном. Замените на свои иконки при необходимости. -->
+    <div class="window-controls">
+      <span class="red"></span><span class="yellow"></span><span class="green"></span>
+    </div>
+    <button class="back-button" onclick="history.back()" type="button">← Назад</button>
+    <h1>Название статьи</h1>
+    <p><em>Укажите дату публикации здесь</em></p>
+    <p>
+      Здесь начинается содержание вашей статьи. Чтобы оформить текст жирным,
+      используйте тег <code>&lt;strong&gt;жирный текст&lt;/strong&gt;</code>.
+      Курсив — тег <code>&lt;em&gt;курсив&lt;/em&gt;</code>,
+      подчёркнутый текст — тег <code>&lt;u&gt;подчёркивание&lt;/u&gt;</code>.
+      Для вставки изображения сохраните файл в папку
+      <code>assets/</code> и добавьте: <br />
+      <code>&lt;img src="../assets/myphoto.jpg" alt="описание" /&gt;</code>
+    </p>
+    <h2>Подзаголовок</h2>
+    <p>
+      Продолжайте писать текст статьи. Вы можете использовать списки:
+    </p>
+    <ul>
+      <li>Первый пункт</li>
+      <li>Второй пункт</li>
+    </ul>
+    <p>
+      В конце статьи можете вставить дополнительные разделы или ссылки на
+      другие материалы. Старайтесь разделять текст на небольшие абзацы для
+      лучшей читаемости.
+    </p>
+  </div>
+  <!-- Навигация. Обратите внимание на относительные пути -->
+  <nav class="nav">
+    <button data-target="../index.html">Главная</button>
+    <button data-target="../articles.html">Статьи</button>
+    <button data-target="../projects.html">Проекты</button>
+    <button data-target="../observations.html">Наблюдения</button>
+    <button data-target="../about.html">Обо мне</button>
+    <button data-target="../info.html">Инфо</button>
+  </nav>
+  <script src="../js/app.js?v=4" defer></script>
+</body>
+</html>

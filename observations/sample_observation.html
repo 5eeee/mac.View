@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Пример наблюдения – mac.View</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <div id="splash" style="display:none;"></div>
+  <header class="glass">
+    <div id="logo-target" class="header-logo">
+      <img src="../assets/logo.png" alt="Логотип mac.View" />
+    </div>
+    <div class="brand">
+      <span class="top">mac.</span>
+      <span class="bottom">View</span>
+    </div>
+  </header>
+  <div class="content">
+    <div class="window-controls">
+      <span class="red"></span><span class="yellow"></span><span class="green"></span>
+    </div>
+    <button class="back-button" onclick="history.back()" type="button">← Назад</button>
+    <h1>Пример наблюдения</h1>
+    <p><em>Дата: 2&nbsp;января&nbsp;2025&nbsp;года</em></p>
+    <p>
+      В этом разделе можно оставлять короткие заметки, идеи и наблюдения.
+      Например, я заметил, что правильная организация файлов и папок значительно
+      упрощает поддержку проекта. Структурируйте свой архив заранее, чтобы
+      легче было находить нужную информацию.
+    </p>
+    <p>
+      Ещё одна идея — использовать шаблоны для повторяющихся структур: статьи,
+      проекты и наблюдения оформляются одинаково, что экономит время.
+    </p>
+  </div>
+  <nav class="nav glass">
+    <button data-target="../index.html">Главная</button>
+    <button data-target="../articles.html">Статьи</button>
+    <button data-target="../projects.html">Проекты</button>
+    <button data-target="../observations.html">Наблюдения</button>
+    <button data-target="../about.html">Обо мне</button>
+    <button data-target="../info.html">Инфо</button>
+  </nav>
+  <script src="../js/app.js" defer></script>
+</body>
+</html>

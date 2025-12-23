@@ -1,0 +1,473 @@
+/*
+  mac.View personal archive site styles
+
+  Этот файл описывает общие стили для всех страниц сайта mac.View.
+  В новой версии дизайн ориентирован на тёмную тему с эффектом
+  «жидкого стекла» (glassmorphism). Элементы интерфейса выглядят
+  словно полупрозрачные карточки, «плавающие» над тёмным фоном.
+  Цветовая схема минималистична: тёмно‑серый фон, светлые панели
+  и яркие акцентные круги для категорий.
+
+  Шрифт по умолчанию заменён на современный «Inter», который
+  загружается с Google Fonts. При необходимости его можно заменить,
+  изменив свойство font‑family в селекторе body.
+*/
+
+/* Подключаем шрифт Inter c разных начертаний. Если подключение
+   к Google Fonts недоступно, браузер использует системный sans-serif. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Цвета для акцентов категорий. Используются в карточках и фильтрах */
+  --cat-green: #34c759;
+  --cat-yellow: #ffd60a;
+  --cat-red: #ff453a;
+  /* Основные параметры эффекта жидкого стекла */
+  --blur: 20px;
+  --glass-light-bg: rgba(255, 255, 255, 0.08);
+  --glass-dark-bg: rgba(255, 255, 255, 0.14);
+  --glass-border-light: rgba(255, 255, 255, 0.18);
+  --glass-border-dark: rgba(255, 255, 255, 0.28);
+  /* Радиусы округлений */
+  --radius-xl: 28px;
+  --radius-lg: 20px;
+  /* Цвет текста по умолчанию (на тёмном фоне) */
+  --text-color: #e3e3e3;
+  /* Фон всего сайта (тёмный) */
+  --backdrop-bg: #121212;
+
+  /* Длительность анимации логотипа (заставка) */
+  --anim-duration: 1600ms;
+  /* Размеры логотипа в заставке и в шапке */
+  --splash-logo-size: 200px;
+  --header-logo-size: 44px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  color: var(--text-color);
+  background: var(--backdrop-bg);
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Контейнер приложения. Ограничивает ширину контента на десктопах
+   и обеспечивает отступы вокруг содержимого. */
+.app {
+  max-width: 460px;
+  margin: 0 auto;
+  padding: 18px 16px 120px;
+}
+
+/* Элемент с эффектом жидкого стекла. Используется для карточек,
+   панелей и любых блоков, где нужна полупрозрачность и размытие. */
+.glass {
+  /* Универсальный эффект стекла для тёмной темы. Карточки имеют
+     полупрозрачный фон и лёгкое размытие. */
+  backdrop-filter: blur(var(--blur)) saturate(180%);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(180%);
+  background: var(--glass-light-bg);
+  border: 1px solid var(--glass-border-light);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Шапка сайта. Фиксируется в верхней части и скрывается при прокрутке
+   вниз, показывается при прокрутке вверх. */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 50;
+  backdrop-filter: blur(var(--blur)) saturate(180%);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(180%);
+  background: var(--glass-dark-bg);
+  border-bottom: 1px solid var(--glass-border-dark);
+  transition: transform 0.35s ease;
+}
+
+/* Скрытая шапка — выдвигается вверх полностью. */
+header.hidden {
+  transform: translateY(-100%);
+}
+
+/* Логотип в шапке (уменьшенная версия) */
+.header-logo {
+  width: var(--header-logo-size);
+  height: var(--header-logo-size);
+  flex-shrink: 0;
+}
+/* Убедитесь, что картинка в шапке не имеет нулевого размера */
+.header-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  color: var(--text-color);
+}
+
+/* Размеры и стили текста в логотипе */
+.brand .top {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.2px;
+}
+
+.brand .bottom {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+
+/* Блок приветствия (герой). Немного выходит за рамки окружения,
+   чтобы визуально отделяться от остальных карточек. */
+.hero {
+  border-radius: var(--radius-xl);
+  padding: 32px 26px 34px;
+  margin-top: 96px;
+  margin-bottom: 18px;
+  background: rgba(255, 255, 255, 0.85);
+  color: #0d0d0d;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.hero small {
+  opacity: 0.7;
+  font-weight: 500;
+  color: #5c5c5c;
+}
+
+.hero h1 {
+  margin: 10px 0 0;
+  font-size: 30px;
+  line-height: 1.15;
+  letter-spacing: -0.3px;
+  color: #0d0d0d;
+}
+
+.hero h1 span {
+  font-weight: 600;
+}
+
+.hero .meta {
+  margin-top: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 13px;
+  opacity: 0.8;
+  color: #5c5c5c;
+}
+
+/* Карточки разделов. Используются на главной странице и списках.
+   При активации сжимаются для эффекта нажатия. */
+.card {
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  margin-bottom: 14px;
+  transition: transform 0.18s ease;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--text-color);
+  display: block;
+  background: var(--glass-light-bg);
+  border: 1px solid var(--glass-border-light);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.card:active {
+  transform: scale(0.97);
+}
+
+.card h2 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.card p {
+  margin: 6px 0 0;
+  font-size: 14px;
+  opacity: 0.75;
+  line-height: 1.4;
+}
+
+/* Разные варианты фона карточек */
+.card.orange {
+  /* Для карточек с акцентом можно использовать категорию цвета через inline style */
+  background: var(--glass-light-bg);
+}
+
+.card.soft {
+  background: var(--glass-light-bg);
+}
+
+/* Нижняя навигация (бар). Находится внизу экрана,
+   имеет эффект стекла и использует текст вместо эмодзи. */
+.nav {
+  position: fixed;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+  width: calc(100% - 32px);
+  max-width: 420px;
+  height: 64px;
+  border-radius: 32px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 50;
+  backdrop-filter: blur(var(--blur)) saturate(180%);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(180%);
+  background: var(--glass-dark-bg);
+  border: 1px solid var(--glass-border-dark);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.nav button {
+  flex: 1;
+  margin: 4px;
+  height: calc(100% - 8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  border: none;
+  background: var(--glass-light-bg);
+  color: var(--text-color);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.nav button.active {
+  background: rgba(255, 255, 255, 0.25);
+  color: #000;
+  font-weight: 600;
+}
+
+/* Кнопка «Назад». Используется на внутренних страницах. */
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--glass-border-light);
+  backdrop-filter: blur(var(--blur)) saturate(180%);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(180%);
+  background: var(--glass-light-bg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--text-color);
+}
+
+.back-button span {
+  font-weight: 500;
+}
+
+/* Иконки управления окном (Mac‑style). Их можно заменить своими
+   изображениями; по умолчанию это цветные круги. */
+.window-controls {
+  display: flex;
+  gap: 6px;
+  padding: 8px 0;
+}
+
+.window-controls span {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-size: cover;
+}
+
+.window-controls .red {
+  background-image: url('../assets/red.png');
+}
+
+.window-controls .yellow {
+  background-image: url('../assets/yellow.png');
+}
+
+.window-controls .green {
+  background-image: url('../assets/green.png');
+}
+
+/* Обёртка для содержимого статьи, проекта и других страниц.
+   Максимальная ширина и отступы совпадают с главным контейнером. */
+.content {
+  max-width: 460px;
+  margin: 96px auto 120px;
+  padding: 0 18px;
+  color: var(--text-color);
+}
+
+.content h1,
+.content h2,
+.content h3 {
+  margin-top: 24px;
+  margin-bottom: 12px;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.content p {
+  margin-bottom: 16px;
+  line-height: 1.6;
+  opacity: 0.88;
+}
+
+.content img {
+  max-width: 100%;
+  display: block;
+  margin: 12px auto;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+/* Простые таблицы для списков навыков, проектов и т. д. */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 8px 6px;
+}
+
+th {
+  font-weight: 700;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+tr:nth-child(odd) td {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Фото на странице «Обо мне» */
+.profile-photo {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0 24px;
+}
+
+.profile-photo img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--glass-border-dark);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Фильтр по категориям для страницы статей */
+.filters {
+  display: flex;
+  gap: 12px;
+  margin: 10px 0 18px;
+}
+
+.filters button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 1px solid var(--glass-border-light);
+  border-radius: 16px;
+  background: var(--glass-light-bg);
+  backdrop-filter: blur(var(--blur)) saturate(180%);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(180%);
+  cursor: pointer;
+  color: var(--text-color);
+  font-size: 13px;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.filters button img {
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+}
+
+.filters button.active {
+  background: rgba(255, 255, 255, 0.25);
+  color: #000;
+}
+
+/* Медиа-запрос для маленьких экранов. Уменьшаем отступы и размеры. */
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 28px;
+  }
+  .hero {
+    padding: 24px 20px 26px;
+  }
+  header {
+    height: 68px;
+  }
+  .nav {
+    height: 64px;
+    border-radius: 32px;
+  }
+}
+
+/*
+  Заставка. Отображается поверх всего содержимого при загрузке и
+  содержит увеличенный логотип. После завершения анимации она
+  плавно исчезает (анимация контролируется через app.js).
+*/
+#splash {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 1);
+  z-index: 1000;
+
+  /* Заставка перекрывает весь экран и будет удалена через JS после
+     завершения анимации логотипа. Здесь не используется CSS‑анимация
+     исчезновения; устранение и плавное угасание контролируются в
+     скрипте. */
+}
+
+/* Крупный логотип внутри заставки */
+#logo-fly {
+  /* Размер и плавность анимации крупного логотипа */
+  width: var(--splash-logo-size);
+  height: var(--splash-logo-size);
+  object-fit: contain;
+  will-change: transform;
+  transition:
+    transform var(--anim-duration) cubic-bezier(.22, 1, .36, 1),
+    opacity 0.6s ease;
+}
+
+/* Анимация исчезновения заставки */
+@keyframes splashFade {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>mac.View – Статьи</title>
+  <link rel="stylesheet" href="css/style.css?v=1" />
+</head>
+<body>
+  <!-- Заставка (не используется на внутренних страницах, но оставлена для единообразия) -->
+  <div id="splash" style="display:none;"></div>
+  <!-- Шапка -->
+  <header>
+    <div id="logo-target" class="header-logo">
+      <img src="assets/logo.png" alt="Логотип mac.View" />
+    </div>
+    <div class="brand">
+      <span class="top">mac.</span>
+      <span class="bottom">View</span>
+    </div>
+  </header>
+  <!-- Кнопка «Назад» -->
+  <div class="content">
+    <button class="back-button" onclick="history.back()" type="button">← Назад</button>
+    <h1>Статьи</h1>
+    <p>
+      В этом разделе будут отображаться все ваши статьи. Чтобы добавить новую
+      публикацию, создайте файл на основе шаблона <code>templates/post_template.html</code>,
+      сохраните его в папку <code>posts/</code> и добавьте ссылку на него в список ниже.
+      Каждый файл статьи представляет собой отдельную страницу, где вы сможете
+      оформить текст, добавить изображения и использовать кнопки управления окна
+      как в макОС.
+    </p>
+    <!-- Фильтр по категориям. Кнопка «Все» показывает все статьи.
+         Цветные кнопки соответствуют категориям: зелёная (успех/подтверждено),
+         жёлтая (гипотеза), красная (ошибка/предупреждение). -->
+    <div class="filters">
+      <button class="filter-button active" data-category="all">Все</button>
+      <button class="filter-button" data-category="green"><img src="assets/green.png" alt="Зелёная" /></button>
+      <button class="filter-button" data-category="yellow"><img src="assets/yellow.png" alt="Жёлтая" /></button>
+      <button class="filter-button" data-category="red"><img src="assets/red.png" alt="Красная" /></button>
+    </div>
+    <!-- Список статей. Каждая карточка имеет атрибут data-category,
+         который определяет её категорию для фильтрации. -->
+    <div id="articles-list">
+    <!-- Пример списка статей. Скопируйте/измените элементы для своих записей -->
+      <div class="card" style="margin-bottom:8px;" onclick="location.href='posts/sample_post.html'" data-category="green">
+        <h2>Пример статьи</h2>
+        <p>Краткое описание содержимого...</p>
+      </div>
+      <!-- Чтобы добавить новую статью, продублируйте блок выше и измените
+           адрес в location.href и текст. Не забудьте указать нужную категорию в
+           атрибуте data-category (green, yellow или red). -->
+    </div>
+  </div>
+  <!-- Нижняя навигация -->
+  <nav class="nav">
+    <button data-target="index.html">Главная</button>
+    <button data-target="articles.html">Статьи</button>
+    <button data-target="projects.html">Проекты</button>
+    <button data-target="observations.html">Наблюдения</button>
+    <button data-target="about.html">Обо мне</button>
+    <button data-target="info.html">Инфо</button>
+  </nav>
+  <script src="./js/app.js?v=4" defer></script>
+  <!-- Скрипт фильтрации статей по категориям -->
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const filterButtons = document.querySelectorAll('.filter-button');
+    const articles = document.querySelectorAll('#articles-list .card');
+    filterButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        // подсветка кнопок
+        filterButtons.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        const cat = btn.getAttribute('data-category');
+        articles.forEach((card) => {
+          const c = card.dataset.category;
+          if (cat === 'all' || c === cat) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  });
+  </script>
+</body>
+</html>

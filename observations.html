@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>mac.View – Наблюдения</title>
+  <link rel="stylesheet" href="css/style.css?v=1" />
+</head>
+<body>
+  <div id="splash" style="display:none;"></div>
+  <header>
+    <div id="logo-target" class="header-logo">
+      <img src="assets/logo.png" alt="Логотип mac.View" />
+    </div>
+    <div class="brand">
+      <span class="top">mac.</span>
+      <span class="bottom">View</span>
+    </div>
+  </header>
+  <div class="content">
+    <button class="back-button" onclick="history.back()" type="button">← Назад</button>
+    <h1>Наблюдения</h1>
+    <p>
+      Этот раздел предназначен для ваших идей, заметок и выводов. Вы можете
+      записывать сюда всё, что считаете важным: мысли о работе, интересные
+      наблюдения, небольшие лайфхаки. Для каждой заметки вы можете
+      создавать отдельный файл в папке <code>observations/</code> на основе
+      шаблона <code>templates/post_template.html</code> или просто
+      перечислять заметки списком прямо на этой странице.
+    </p>
+    <!-- Пример карточки наблюдения -->
+    <div class="card" style="margin-bottom:8px;" onclick="location.href='observations/sample_observation.html'">
+      <h2>Пример наблюдения</h2>
+      <p>Краткая заметка или мысль...</p>
+    </div>
+    <!-- Добавьте дополнительные карточки по аналогии. -->
+  </div>
+  <nav class="nav">
+    <button data-target="index.html">Главная</button>
+    <button data-target="articles.html">Статьи</button>
+    <button data-target="projects.html">Проекты</button>
+    <button data-target="observations.html">Наблюдения</button>
+    <button data-target="about.html">Обо мне</button>
+    <button data-target="info.html">Инфо</button>
+  </nav>
+  <script src="./js/app.js?v=4" defer></script>
+</body>
+</html>

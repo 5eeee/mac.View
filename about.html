@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>mac.View – Обо мне</title>
+  <link rel="stylesheet" href="css/style.css?v=1" />
+</head>
+<body>
+  <div id="splash" style="display:none;"></div>
+  <header>
+    <div id="logo-target" class="header-logo">
+      <img src="assets/logo.png" alt="Логотип mac.View" />
+    </div>
+    <div class="brand">
+      <span class="top">mac.</span>
+      <span class="bottom">View</span>
+    </div>
+  </header>
+  <div class="content">
+    <button class="back-button" onclick="history.back()" type="button">← Назад</button>
+    <h1>Обо мне</h1>
+    <p>
+      На этой странице расскажите о себе: кто вы, чем занимаетесь, какие навыки и
+      достижения у вас есть. Фото можно заменить на своё, просто положите
+      изображение в папку <code>assets/</code> и измените атрибут <code>src</code>
+      у тега <code>&lt;img&gt;</code> ниже.
+    </p>
+    <div class="profile-photo">
+      <img src="assets/profile_placeholder.png" alt="Ваше фото" />
+    </div>
+    <h2>Навыки</h2>
+    <p>Пример таблицы навыков. Добавляйте или удаляйте строки по необходимости.</p>
+    <table>
+      <tr>
+        <th>Категория</th>
+        <th>Навык</th>
+        <th>Уровень</th>
+      </tr>
+      <tr>
+        <td>Дизайн</td>
+        <td>Adobe XD, Figma</td>
+        <td>Продвинутый</td>
+      </tr>
+      <tr>
+        <td>Разработка</td>
+        <td>HTML, CSS, JavaScript</td>
+        <td>Уверенный</td>
+      </tr>
+      <tr>
+        <td>Управление</td>
+        <td>Project Management</td>
+        <td>Базовый</td>
+      </tr>
+    </table>
+  </div>
+  <nav class="nav">
+    <button data-target="index.html">Главная</button>
+    <button data-target="articles.html">Статьи</button>
+    <button data-target="projects.html">Проекты</button>
+    <button data-target="observations.html">Наблюдения</button>
+    <button data-target="about.html">Обо мне</button>
+    <button data-target="info.html">Инфо</button>
+  </nav>
+  <script src="./js/app.js?v=4" defer></script>
+</body>
+</html>

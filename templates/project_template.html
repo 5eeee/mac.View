@@ -1,0 +1,75 @@
+<!--
+  Шаблон страницы проекта для mac.View
+
+  Скопируйте этот файл в папку projects/, переименуйте (например,
+  my_project.html) и заполните информацией о конкретном проекте: название,
+  краткое описание, состав команды и вашу роль.
+-->
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Название проекта – mac.View</title>
+  <link rel="stylesheet" href="../css/style.css?v=1" />
+</head>
+<body>
+  <div id="splash" style="display:none;"></div>
+  <header>
+    <div id="logo-target" class="header-logo">
+      <img src="../assets/logo.png" alt="Логотип mac.View" />
+    </div>
+    <div class="brand">
+      <span class="top">mac.</span>
+      <span class="bottom">View</span>
+    </div>
+  </header>
+  <div class="content">
+    <div class="window-controls">
+      <span class="red"></span><span class="yellow"></span><span class="green"></span>
+    </div>
+    <button class="back-button" onclick="history.back()" type="button">← Назад</button>
+    <h1>Название проекта</h1>
+    <p><em>Краткое описание проекта: что это за проект, какие задачи он решает, на каком этапе находится.</em></p>
+    <h2>Состав команды</h2>
+    <p>Опишите, кто принимает участие в проекте. Ниже пример таблицы:</p>
+    <table>
+      <tr>
+        <th>Имя</th>
+        <th>Роль</th>
+        <th>Контакты</th>
+      </tr>
+      <tr>
+        <td>Иван Иванов</td>
+        <td>Разработчик</td>
+        <td>ivan@example.com</td>
+      </tr>
+      <tr>
+        <td>Мария Петрова</td>
+        <td>Дизайнер</td>
+        <td>maria@example.com</td>
+      </tr>
+      <tr>
+        <td>Вы</td>
+        <td>Ваша роль в проекте</td>
+        <td>your@email</td>
+      </tr>
+    </table>
+    <h2>Описание вашей роли</h2>
+    <p>
+      Расскажите, что именно вы делаете в проекте, какие задачи решаете, какие
+      технологии применяете. Этот текст поможет позже вспомнить детали и
+      оценить собственный вклад.
+    </p>
+  </div>
+  <nav class="nav">
+    <button data-target="../index.html">Главная</button>
+    <button data-target="../articles.html">Статьи</button>
+    <button data-target="../projects.html">Проекты</button>
+    <button data-target="../observations.html">Наблюдения</button>
+    <button data-target="../about.html">Обо мне</button>
+    <button data-target="../info.html">Инфо</button>
+  </nav>
+  <script src="../js/app.js?v=4" defer></script>
+</body>
+</html>

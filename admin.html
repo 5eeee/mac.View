@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>mac.View – Админ панель</title>
+  <link rel="stylesheet" href="css/style.css?v=1" />
+  <style>
+    /* Дополнительные стили для формы администратора */
+    .admin-section {
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      margin-bottom: 32px;
+      background: var(--glass-light-bg);
+      border: 1px solid var(--glass-border-light);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    .admin-section h2 {
+      margin-top: 0;
+      font-weight: 600;
+      font-size: 20px;
+    }
+    .admin-section label {
+      display: block;
+      margin-top: 12px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .admin-section input[type="text"],
+    .admin-section textarea,
+    .admin-section select {
+      width: 100%;
+      margin-top: 4px;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid var(--glass-border-light);
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-color);
+      font-family: inherit;
+      font-size: 14px;
+    }
+    .admin-section textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    .admin-section button {
+      margin-top: 16px;
+      padding: 10px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--glass-border-dark);
+      background: var(--glass-dark-bg);
+      color: var(--text-color);
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+    .admin-section button:hover {
+      background: rgba(255, 255, 255, 0.25);
+      color: #000;
+    }
+    .admin-section a {
+      display: none;
+      margin-top: 12px;
+      color: #007aff;
+      text-decoration: underline;
+    }
+    .admin-section a:hover {
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Заставка не используется в админке -->
+  <div id="splash" style="display:none;"></div>
+  <header>
+    <div id="logo-target" class="header-logo">
+      <img src="assets/logo.png" alt="Логотип mac.View" />
+    </div>
+    <div class="brand">
+      <span class="top">mac.</span>
+      <span class="bottom">View</span>
+    </div>
+  </header>
+  <div class="content">
+    <button class="back-button" onclick="history.back()" type="button">← Назад</button>
+    <h1>Админ панель</h1>
+    <p>
+      На этой странице вы можете создавать новые статьи и проекты для вашего
+      архива. После генерации файла скачайте его и разместите в
+      соответствующей папке проекта (например, <code>posts/</code> или
+      <code>projects/</code>) на GitHub, а затем добавьте карточку на
+      соответствующей странице списка.
+    </p>
+    <div class="admin-section" id="article-section">
+      <h2>Создать статью</h2>
+      <label>Заголовок
+        <input type="text" id="article-title" />
+      </label>
+      <label>Категория
+        <select id="article-category">
+          <option value="green">Зелёная (подтверждено)</option>
+          <option value="yellow">Жёлтая (гипотеза)</option>
+          <option value="red">Красная (ошибка или предупреждение)</option>
+        </select>
+      </label>
+      <label>Краткое описание
+        <textarea id="article-description"></textarea>
+      </label>
+      <label>Содержимое
+        <textarea id="article-content"></textarea>
+      </label>
+      <button id="article-generate">Сгенерировать статью</button>
+      <a id="article-download"></a>
+    </div>
+    <div class="admin-section" id="project-section">
+      <h2>Создать проект</h2>
+      <label>Название проекта
+        <input type="text" id="project-title" />
+      </label>
+      <label>Краткое описание
+        <textarea id="project-description"></textarea>
+      </label>
+      <label>Состав команды
+        <textarea id="project-team" placeholder="Каждый участник с новой строки, формат: Имя | Роль | Контакт"></textarea>
+      </label>
+      <label>Описание вашей роли
+        <textarea id="project-role"></textarea>
+      </label>
+      <button id="project-generate">Сгенерировать проект</button>
+      <a id="project-download"></a>
+    </div>
+  </div>
+  <!-- Подключаем общий скрипт, он понадобится для логики навигации -->
+  <script src="js/app.js?v=4" defer></script>
+  <!-- Скрипт генерации статей и проектов -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Генерация статьи
+      const genArticleBtn = document.getElementById('article-generate');
+      const articleDownload = document.getElementById('article-download');
+      genArticleBtn.addEventListener('click', function() {
+        const title = document.getElementById('article-title').value.trim();
+        const category = document.getElementById('article-category').value;
+        const desc = document.getElementById('article-description').value.trim();
+        const content = document.getElementById('article-content').value.trim();
+        if (!title) {
+          alert('Пожалуйста, введите заголовок статьи.');
+          return;
+        }
+        const slug = title.toLowerCase()
+          .replace(/[^a-zа-я0-9]+/g, '-')
+          .replace(/^-+|-+$/g, '') || 'article';
+        const html = generateArticleFile(title, category, desc, content);
+        const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+        articleDownload.href = URL.createObjectURL(blob);
+        articleDownload.download = slug + '.html';
+        articleDownload.textContent = 'Скачать ' + slug + '.html';
+        articleDownload.style.display = 'inline-block';
+      });
+      function generateArticleFile(title, category, description, content) {
+        const paragraphs = content.split(/\n+/).map(function(p) {
+          return '<p>' + escapeHtml(p) + '</p>';
+        }).join('\n        ');
+        const metaDescription = description ? '<p>' + escapeHtml(description) + '</p>' : '';
+        return `<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>${escapeHtml(title)} – mac.View</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <div id="splash" style="display:none;"></div>
+  <header>
+    <div id="logo-target" class="header-logo">
+      <img src="../assets/logo.png" alt="Логотип mac.View" />
+    </div>
+    <div class="brand">
+      <span class="top">mac.</span>
+      <span class="bottom">View</span>
+    </div>
+  </header>
+  <div class="content">
+    <div class="window-controls">
+      <span class="red"></span><span class="yellow"></span><span class="green"></span>
+    </div>
+    <button class="back-button" onclick="history.back()" type="button">← Назад</button>
+    <h1>${escapeHtml(title)}</h1>
+    <p><em>Дата: ${new Date().toLocaleDateString('ru-RU')}</em></p>
+    ${metaDescription}
+    ${paragraphs}
+  </div>
+  <nav class="nav">
+    <button data-target="../index.html">Главная</button>
+    <button data-target="../articles.html">Статьи</button>
+    <button data-target="../projects.html">Проекты</button>
+    <button data-target="../observations.html">Наблюдения</button>
+    <button data-target="../about.html">Обо мне</button>
+    <button data-target="../info.html">Инфо</button>
+  </nav>
+  <script src="../js/app.js?v=4" defer></script>
+</body>
+</html>`;
+      }
+      // Генерация проекта
+      const genProjectBtn = document.getElementById('project-generate');
+      const projectDownload = document.getElementById('project-download');
+      genProjectBtn.addEventListener('click', function() {
+        const title = document.getElementById('project-title').value.trim();
+        const description = document.getElementById('project-description').value.trim();
+        const teamInput = document.getElementById('project-team').value.trim();
+        const roleDesc = document.getElementById('project-role').value.trim();
+        if (!title) {
+          alert('Пожалуйста, введите название проекта.');
+          return;
+        }
+        const slug = title.toLowerCase()
+          .replace(/[^a-zа-я0-9]+/g, '-')
+          .replace(/^-+|-+$/g, '') || 'project';
+        const html = generateProjectFile(title, description, teamInput, roleDesc);
+        const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+        projectDownload.href = URL.createObjectURL(blob);
+        projectDownload.download = slug + '.html';
+        projectDownload.textContent = 'Скачать ' + slug + '.html';
+        projectDownload.style.display = 'inline-block';
+      });
+      function generateProjectFile(title, description, teamInput, roleDesc) {
+        const teamRows = teamInput.split(/\n+/).map(function(line) {
+          if (!line.trim()) return '';
+          const parts = line.split('|').map(function(p) { return escapeHtml(p.trim()); });
+          let name = parts[0] || '';
+          let role = parts[1] || '';
+          let contact = parts[2] || '';
+          return `<tr><td>${name}</td><td>${role}</td><td>${contact}</td></tr>`;
+        }).join('\n            ');
+        return `<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>${escapeHtml(title)} – mac.View</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <div id="splash" style="display:none;"></div>
+  <header>
+    <div id="logo-target" class="header-logo">
+      <img src="../assets/logo.png" alt="Логотип mac.View" />
+    </div>
+    <div class="brand">
+      <span class="top">mac.</span>
+      <span class="bottom">View</span>
+    </div>
+  </header>
+  <div class="content">
+    <div class="window-controls">
+      <span class="red"></span><span class="yellow"></span><span class="green"></span>
+    </div>
+    <button class="back-button" onclick="history.back()" type="button">← Назад</button>
+    <h1>${escapeHtml(title)}</h1>
+    <p><em>${escapeHtml(description)}</em></p>
+    <h2>Состав команды</h2>
+    <table>
+      <tr><th>Имя</th><th>Роль</th><th>Контакты</th></tr>
+      ${teamRows}
+    </table>
+    <h2>Описание вашей роли</h2>
+    <p>${escapeHtml(roleDesc)}</p>
+  </div>
+  <nav class="nav">
+    <button data-target="../index.html">Главная</button>
+    <button data-target="../articles.html">Статьи</button>
+    <button data-target="../projects.html">Проекты</button>
+    <button data-target="../observations.html">Наблюдения</button>
+    <button data-target="../about.html">Обо мне</button>
+    <button data-target="../info.html">Инфо</button>
+  </nav>
+  <script src="../js/app.js?v=4" defer></script>
+</body>
+</html>`;
+      }
+      function escapeHtml(str) {
+        return str.replace(/&/g, '&amp;')
+                  .replace(/</g, '&lt;')
+                  .replace(/>/g, '&gt;')
+                  .replace(/"/g, '&quot;')
+                  .replace(/'/g, '&#39;');
+      }
+    });
+  </script>
+</body>
+</html>

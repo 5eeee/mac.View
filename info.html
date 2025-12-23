@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>mac.View – Информация</title>
+  <link rel="stylesheet" href="css/style.css?v=1" />
+</head>
+<body>
+  <div id="splash" style="display:none;"></div>
+  <header>
+    <div id="logo-target" class="header-logo">
+      <img src="assets/logo.png" alt="Логотип mac.View" />
+    </div>
+    <div class="brand">
+      <span class="top">mac.</span>
+      <span class="bottom">View</span>
+    </div>
+  </header>
+  <div class="content">
+    <button class="back-button" onclick="history.back()" type="button">← Назад</button>
+    <h1>Инфо</h1>
+    <p>
+      Свяжитесь со мной удобным способом. Ниже приведены актуальные контактные
+      данные, которые вы можете редактировать прямо в этом файле.
+    </p>
+    <table>
+      <tr>
+        <th>Тип</th>
+        <th>Значение</th>
+      </tr>
+      <tr>
+        <td>Телефон</td>
+        <td><a href="tel:89015920406">8&nbsp;901&nbsp;592‑04‑06</a></td>
+      </tr>
+      <tr>
+        <td>Email</td>
+        <td><a href="mailto:Kutomkinv@list.ru">Kutomkinv@list.ru</a></td>
+      </tr>
+    </table>
+    <p>
+      По вопросам сотрудничества, предложений или обратной связи вы можете
+      написать письмо или позвонить. Также можете оставить заявку в telegram
+      при помощи mini‑приложения.
+    </p>
+  </div>
+  <nav class="nav">
+    <button data-target="index.html">Главная</button>
+    <button data-target="articles.html">Статьи</button>
+    <button data-target="projects.html">Проекты</button>
+    <button data-target="observations.html">Наблюдения</button>
+    <button data-target="about.html">Обо мне</button>
+    <button data-target="info.html">Инфо</button>
+  </nav>
+  <script src="./js/app.js?v=4" defer></script>
+</body>
+</html>

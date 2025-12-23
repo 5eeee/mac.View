@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Пример статьи – mac.View</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <div id="splash" style="display:none;"></div>
+  <header class="glass">
+    <div id="logo-target" class="header-logo">
+      <img src="../assets/logo.png" alt="Логотип mac.View" />
+    </div>
+    <div class="brand">
+      <span class="top">mac.</span>
+      <span class="bottom">View</span>
+    </div>
+  </header>
+  <div class="content">
+    <div class="window-controls">
+      <span class="red"></span><span class="yellow"></span><span class="green"></span>
+    </div>
+    <button class="back-button" onclick="history.back()" type="button">← Назад</button>
+    <h1>Пример статьи</h1>
+    <p><em>Дата публикации: 1&nbsp;января&nbsp;2025&nbsp;года</em></p>
+    <p>
+      Эта примерная статья демонстрирует, как можно оформлять материалы внутри
+      вашего архива. Используйте <strong>жирный</strong>, <em>курсив</em> и
+      <u>подчёркивание</u> для выделения ключевых моментов.
+    </p>
+    <h2>Вступление</h2>
+    <p>
+      Начиная писать статью, поделитесь основной мыслью и целью. Постарайтесь
+      увлечь читателя с первых строк.
+    </p>
+    <h2>Основная часть</h2>
+    <p>
+      В основном блоке раскрывается тема. Вы можете вставлять изображения:
+    </p>
+    <img src="../assets/profile_placeholder.png" alt="Пример изображения" />
+    <p>
+      Продолжайте описывать свои мысли, приводите примеры, цитаты и выделяйте
+      важные пункты списками:
+    </p>
+    <ul>
+      <li>Первый важный аспект</li>
+      <li>Второй важный аспект</li>
+      <li>Третий важный аспект</li>
+    </ul>
+    <h2>Заключение</h2>
+    <p>
+      В конце подведите итог, сделайте выводы и предложите идеи для
+      дальнейшего размышления.
+    </p>
+  </div>
+  <nav class="nav glass">
+    <button data-target="../index.html">Главная</button>
+    <button data-target="../articles.html">Статьи</button>
+    <button data-target="../projects.html">Проекты</button>
+    <button data-target="../observations.html">Наблюдения</button>
+    <button data-target="../about.html">Обо мне</button>
+    <button data-target="../info.html">Инфо</button>
+  </nav>
+  <script src="../js/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>mac.View – Проекты</title>
+  <link rel="stylesheet" href="css/style.css?v=1" />
+</head>
+<body>
+  <!-- Пустая заставка для совместимости -->
+  <div id="splash" style="display:none;"></div>
+  <!-- Шапка -->
+  <header>
+    <div id="logo-target" class="header-logo">
+      <img src="assets/logo.png" alt="Логотип mac.View" />
+    </div>
+    <div class="brand">
+      <span class="top">mac.</span>
+      <span class="bottom">View</span>
+    </div>
+  </header>
+  <div class="content">
+    <button class="back-button" onclick="history.back()" type="button">← Назад</button>
+    <h1>Проекты</h1>
+    <p>
+      Здесь вы можете перечислить проекты, в которых принимали участие, описать
+      свою роль и команду. Каждый проект может быть оформлен на отдельной
+      странице. Для создания страницы проекта рекомендуем воспользоваться
+      шаблоном <code>templates/project_template.html</code>. Сохраните копию
+      шаблона в папку <code>projects/</code> и заполните её данными о
+      конкретном проекте. Затем добавьте ссылку на новый файл в список ниже.
+    </p>
+    <!-- Пример проекта -->
+    <div class="card" style="margin-bottom:8px;" onclick="location.href='projects/sample_project.html'">
+      <h2>Пример проекта</h2>
+      <p>Ваша роль и краткое описание проекта...</p>
+    </div>
+    <!-- Для добавления нового проекта продублируйте блок выше и измените
+         адрес и тексты. -->
+  </div>
+  <!-- Навигация -->
+  <nav class="nav">
+    <button data-target="index.html">Главная</button>
+    <button data-target="articles.html">Статьи</button>
+    <button data-target="projects.html">Проекты</button>
+    <button data-target="observations.html">Наблюдения</button>
+    <button data-target="about.html">Обо мне</button>
+    <button data-target="info.html">Инфо</button>
+  </nav>
+  <script src="./js/app.js?v=4" defer></script>
+</body>
+</html>
